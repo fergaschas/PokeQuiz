@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PokeQuiz</string>
+    <string name="game_fragment_title">Who\'s That Pokemon</string>
+    <string name="pokemon">Pokemon</string>
+</resources>
