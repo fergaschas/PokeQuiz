@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-//base url + {number}.png -> image
+//base url + {number}.png -> image url
 private const val BASE_URL = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/"
 private const val MIN_POKEMON = 1
 private const val MAX_POKEMON = 898
@@ -37,10 +37,18 @@ class GameViewModel : ViewModel() {
     }
 
     private fun getRandomNumber(): Int {
-        return Random.nextInt(MIN_POKEMON, MAX_POKEMON)
+        val random = Random.nextInt(MIN_POKEMON, MAX_POKEMON + 1)
+
+        return if(isValidId(random)) random else getRandomNumber()
     }
 
-    fun startGame() {
+    private fun isValidId(random: Int): Boolean {
+        //todo: comprobar si forma parte del rango
+        //for more generations 1-8
+        return true
+    }
+
+    private fun startGame() {
         _pokemonId.value = getRandomNumber()
         _pokemonImage.value = "${BASE_URL}${_pokemonId.value.toString()}.png?raw=true"
 
@@ -64,18 +72,19 @@ class GameViewModel : ViewModel() {
         var index = 0
         while (answers.size < 4) {
             answers.add(
-                pokemonList[(_options.value?.get(index)?.minus(1)) ?:0])
+                pokemonList[(_options.value?.get(index)) ?:0])
             index++
         }
         return answers
     }
 
-    fun resetValues() {
+    private fun resetValues() {
         _options.value?.clear()
         _optionNames.value?.clear()
     }
 
     fun playButton(option:Int) {
+
         if (option == _pokemonId.value){
             _score.value = _score.value?.plus(10)
             resetValues()
