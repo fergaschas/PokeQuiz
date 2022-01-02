@@ -21,12 +21,16 @@ class ScoreFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentScoreBinding.inflate(inflater)
+        binding = FragmentScoreBinding.inflate(inflater, container, false)
 
-        val score = args.navScore
-        binding.scoreResult.text = score.toString()
-
-        binding.fragment = this
+        binding.scoreFragment = this
+        binding.score = args.navScore
         return binding.root
     }
+
+    fun goToStart() {
+        val action = ScoreFragmentDirections.actionScoreFragmentToStartFragment()
+        findNavController().navigate(action)
+    }
+
 }

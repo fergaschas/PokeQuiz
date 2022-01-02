@@ -11,7 +11,6 @@ import com.example.pokequiz.databinding.FragmentStartBinding
 
 class StartFragment : Fragment() {
 
-    private lateinit var navController: NavController
     private lateinit var binding: FragmentStartBinding
 
     override fun onCreateView(
@@ -20,14 +19,12 @@ class StartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentStartBinding.inflate(inflater)
-        binding.fragment = this
-        navController = findNavController()
-        val navController = findNavController()
+        binding.startFragment = this
         return binding.root
     }
 
     fun startGame(){
         val action = StartFragmentDirections.actionStartFragmentToGameFragment()
-        navController.navigate(action)
+        findNavController().navigate(action)
     }
 }

@@ -6,8 +6,11 @@
     <data>
 
         <variable
-            name="fragment"
+            name="scoreFragment"
             type="com.example.pokequiz.ScoreFragment" />
+        <variable
+            name="score"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,12 +20,28 @@
 
         <TextView
             android:id="@+id/score_result"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/score(score)}"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@id/goToStartBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Score: 0" />
+
+        <Button
+            android:id="@+id/goToStartBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/score_result"
+            android:onClick="@{()->scoreFragment.goToStart()}"
+            android:text="@string/exit"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

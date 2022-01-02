@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/gameFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/gameFragment"
@@ -12,7 +12,17 @@
         tools:layout="@layout/game_fragment" >
         <action
             android:id="@+id/action_gameFragment_to_scoreFragment"
-            app:destination="@id/scoreFragment" />
+            app:destination="@id/scoreFragment"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="firstPokemon"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="lastPokemon"
+            app:argType="integer"
+            android:defaultValue="898" />
     </fragment>
     <fragment
         android:id="@+id/startFragment"
@@ -28,9 +38,7 @@
         android:label="ScoreFragment" >
         <action
             android:id="@+id/action_scoreFragment_to_startFragment"
-            app:destination="@id/startFragment"
-            app:popUpTo="@id/startFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/startFragment" />
         <argument
             android:name="navScore"
             app:argType="integer" />

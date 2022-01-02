@@ -1,22 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="fragment"
+            name="startFragment"
             type="com.example.pokequiz.StartFragment" />
     </data>
 
-    <FrameLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".StartFragment">
 
-        <Button
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/start_game" />
+            android:layout_marginTop="28dp"
+            android:text="Choose Generation"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->startFragment.startGame()}"
+            android:text="@string/start_game"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Generation 1" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generation 2" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generation 3" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generation 4" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generation 5" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generation 6" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generation 7" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/gen8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generation 8" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/allgens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Pokemon" />
+        </com.google.android.material.chip.ChipGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
