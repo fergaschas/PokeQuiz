@@ -1,7 +1,11 @@
 package com.example.pokequiz
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 //base url + {number}.png -> image url
@@ -10,19 +14,22 @@ private const val MIN_POKEMON = 1
 private const val MAX_POKEMON = 898
 private const val CORRECT_POINTS = 10
 private const val ERROR_POINTS = 5
+private const val INITIAL_TIME_IN_MILLIS = 30_000L
+private const val ONE_SECOND_IN_MILLIS = 1_000L
 
 
 class GameViewModel : ViewModel() {
+
+    private val _timer = MutableLiveData<Long>(INITIAL_TIME_IN_MILLIS)
+    val timer get() = Transformations.map(_timer){ time ->
+        time / 1000L
+    }
 
     private val _pokemonImage = MutableLiveData<String>("${BASE_URL}1.png?raw=true")
     val pokemonImage get() = _pokemonImage
 
     private val _pokemonId = MutableLiveData<Int>(1)
     val pokemonId get() = _pokemonId
-
-    val minPokemon = MutableLiveData(MIN_POKEMON)
-
-    val maxPokemon = MutableLiveData(MAX_POKEMON)
 
     private val _options = MutableLiveData<MutableList<Int>>()
     val options get() = _options
@@ -33,18 +40,24 @@ class GameViewModel : ViewModel() {
     private val _score = MutableLiveData<Int>(0)
     val score get() = _score
 
-    init {
-        startGame()
-    }
+    val minPokemon = MutableLiveData(MIN_POKEMON)
+
+    val maxPokemon = MutableLiveData(MAX_POKEMON)
 
     private fun getRandomNumber(min: Int, max: Int): Int {
         return Random.nextInt(min, max + 1)
     }
 
-    private fun startGame() {
+    init {
+        viewModelScope.launch{
+            decreaseTimer()
+        }
+    }
+    fun startGame() {
         _pokemonId.value = getRandomNumber(
-            minPokemon.value?: MIN_POKEMON,
-            maxPokemon.value?: MAX_POKEMON)
+            minPokemon.value ?: MIN_POKEMON,
+            maxPokemon.value ?: MAX_POKEMON
+        )
 
         _pokemonImage.value = "${BASE_URL}${_pokemonId.value.toString()}.png?raw=true"
 
@@ -57,9 +70,12 @@ class GameViewModel : ViewModel() {
         answers.add(_pokemonId.value ?: 0)
 
         while (answers.size < 4) {
-            answers.add(getRandomNumber(
-                minPokemon.value?: MIN_POKEMON,
-                maxPokemon.value?: MAX_POKEMON))
+            answers.add(
+                getRandomNumber(
+                    minPokemon.value ?: MIN_POKEMON,
+                    maxPokemon.value ?: MAX_POKEMON
+                )
+            )
         }
         answers.shuffle()
         return answers
@@ -91,9 +107,14 @@ class GameViewModel : ViewModel() {
                 _score.value = _score.value?.minus(ERROR_POINTS)
             }
         }
-
         resetValues()
         startGame()
     }
 
+    private suspend fun decreaseTimer(){
+        while(_timer.value?.compareTo(0L)?: 0 >= 0){
+            _timer.value = _timer.value?.minus(ONE_SECOND_IN_MILLIS)
+            delay(ONE_SECOND_IN_MILLIS)
+        }
+    }
 }
