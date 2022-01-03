@@ -20,9 +20,9 @@ class GameViewModel : ViewModel() {
     private val _pokemonId = MutableLiveData<Int>(1)
     val pokemonId get() = _pokemonId
 
-    val minPokemon = MutableLiveData<Int>(MIN_POKEMON)
+    val minPokemon = MutableLiveData(MIN_POKEMON)
 
-    val maxPokemon = MutableLiveData<Int>(MAX_POKEMON)
+    val maxPokemon = MutableLiveData(MAX_POKEMON)
 
     private val _options = MutableLiveData<MutableList<Int>>()
     val options get() = _options
@@ -38,7 +38,6 @@ class GameViewModel : ViewModel() {
     }
 
     private fun getRandomNumber(min: Int, max: Int): Int {
-
         return Random.nextInt(min, max + 1)
     }
 

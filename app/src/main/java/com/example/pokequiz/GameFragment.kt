@@ -27,10 +27,10 @@ class GameFragment : Fragment() {
         binding = GameFragmentBinding.inflate(inflater)
         binding.gameFragment = this
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         viewModel.minPokemon.value = args.firstPokemon
         viewModel.maxPokemon.value = args.lastPokemon
+        binding.viewModel = viewModel
 
         return binding.root
     }
