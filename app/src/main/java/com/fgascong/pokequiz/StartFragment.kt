@@ -1,4 +1,4 @@
-package com.example.pokequiz
+package com.fgascong.pokequiz
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.pokequiz.databinding.FragmentStartBinding
+import com.fgascong.pokequiz.R
+import com.fgascong.pokequiz.databinding.FragmentStartBinding
 import com.google.android.material.chip.Chip
 
 class StartFragment : Fragment() {

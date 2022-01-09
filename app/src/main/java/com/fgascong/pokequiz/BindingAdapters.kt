@@ -1,4 +1,4 @@
-package com.example.pokequiz
+package com.fgascong.pokequiz
 
 import android.widget.ImageView
 import androidx.core.net.toUri

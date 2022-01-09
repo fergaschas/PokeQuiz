@@ -7,11 +7,11 @@
 
         <variable
             name="gameFragment"
-            type="com.example.pokequiz.GameFragment" />
+            type="com.fgascong.pokequiz.GameFragment" />
 
         <variable
             name="viewModel"
-            type="com.example.pokequiz.GameViewModel" />
+            type="com.fgascong.pokequiz.GameViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="scoreFragment"
-            type="com.example.pokequiz.ScoreFragment" />
+            type="com.fgascong.pokequiz.ScoreFragment" />
         <variable
             name="score"
             type="Integer" />
@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ScoreFragment">
+        tools:context="com.fgascong.pokequiz.ScoreFragment">
 
         <TextView
             android:id="@+id/score_result"

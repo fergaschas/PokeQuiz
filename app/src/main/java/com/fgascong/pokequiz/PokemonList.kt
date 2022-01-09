@@ -1,4 +1,4 @@
-package com.example.pokequiz
+package com.fgascong.pokequiz
 
 public val pokemonList: List<String> = listOf(
     "MissingNo",

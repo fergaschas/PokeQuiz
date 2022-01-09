@@ -7,14 +7,14 @@
 
         <variable
             name="startFragment"
-            type="com.example.pokequiz.StartFragment" />
+            type="com.fgascong.pokequiz.StartFragment" />
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".StartFragment">
+        tools:context="com.fgascong.pokequiz.StartFragment">
 
         <TextView
             android:id="@+id/textView"

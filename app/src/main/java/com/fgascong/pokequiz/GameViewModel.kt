@@ -1,4 +1,4 @@
-package com.example.pokequiz
+package com.fgascong.pokequiz
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -59,7 +59,7 @@ class GameViewModel : ViewModel() {
             maxPokemon.value ?: MAX_POKEMON
         )
 
-        _pokemonImage.value = "${BASE_URL}${_pokemonId.value.toString()}.png?raw=true"
+        _pokemonImage.value = "$BASE_URL${_pokemonId.value.toString()}.png?raw=true"
 
         _options.value = setOptions()
         _optionNames.value = setOptionNames()

@@ -1,4 +1,4 @@
-package com.example.pokequiz
+package com.fgascong.pokequiz
 
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 
-import com.example.pokequiz.databinding.GameFragmentBinding
+import com.fgascong.pokequiz.databinding.GameFragmentBinding
 
 class GameFragment : Fragment() {
 
