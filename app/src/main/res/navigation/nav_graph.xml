@@ -31,6 +31,12 @@
         <action
             android:id="@+id/action_startFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_startFragment_self"
+            app:destination="@id/startFragment" />
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
@@ -45,4 +51,8 @@
             android:name="navScore"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.fgascong.pokequiz.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

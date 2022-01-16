@@ -21,9 +21,10 @@ private const val ONE_SECOND_IN_MILLIS = 1_000L
 class GameViewModel : ViewModel() {
 
     private val _timer = MutableLiveData<Long>(INITIAL_TIME_IN_MILLIS)
-    val timer get() = Transformations.map(_timer){ time ->
-        time / 1000L
-    }
+    val timer
+        get() = Transformations.map(_timer) { time ->
+            time / 1000L
+        }
 
     private val _pokemonImage = MutableLiveData<String>("${BASE_URL}1.png?raw=true")
     val pokemonImage get() = _pokemonImage
@@ -49,10 +50,11 @@ class GameViewModel : ViewModel() {
     }
 
     init {
-        viewModelScope.launch{
+        viewModelScope.launch {
             decreaseTimer()
         }
     }
+
     fun startGame() {
         _pokemonId.value = getRandomNumber(
             minPokemon.value ?: MIN_POKEMON,
@@ -68,14 +70,14 @@ class GameViewModel : ViewModel() {
     private fun setOptions(): MutableList<Int> {
         val answers: MutableList<Int> = mutableListOf()
         answers.add(_pokemonId.value ?: 0)
+        var number: Int
 
         while (answers.size < 4) {
-            answers.add(
-                getRandomNumber(
-                    minPokemon.value ?: MIN_POKEMON,
-                    maxPokemon.value ?: MAX_POKEMON
-                )
+            number = getRandomNumber(
+                minPokemon.value ?: MIN_POKEMON,
+                maxPokemon.value ?: MAX_POKEMON
             )
+            if (number !in answers) answers.add(number)
         }
         answers.shuffle()
         return answers
@@ -111,8 +113,8 @@ class GameViewModel : ViewModel() {
         startGame()
     }
 
-    private suspend fun decreaseTimer(){
-        while(_timer.value?.compareTo(0L)?: 0 >= 0){
+    private suspend fun decreaseTimer() {
+        while (_timer.value?.compareTo(0L) ?: 0 >= 0) {
             _timer.value = _timer.value?.minus(ONE_SECOND_IN_MILLIS)
             delay(ONE_SECOND_IN_MILLIS)
         }

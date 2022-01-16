@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/fragment_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/game_fragment.xml" value="0.2" />
         <entry key="app/src/main/res/layout/game_options_item.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/xml/root_preferences.xml" value="0.35572916666666665" />
       </map>
     </option>
   </component>
